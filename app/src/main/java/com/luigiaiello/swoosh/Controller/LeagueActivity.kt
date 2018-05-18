@@ -1,10 +1,10 @@
-package com.luigiaiello.swoosh
+package com.luigiaiello.swoosh.Controller
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.luigiaiello.swoosh.Utilities.EXTRA_LEAGUE
 import com.luigiaiello.swoosh.R.layout.activity_league
 import kotlinx.android.synthetic.main.activity_league.*
 
@@ -18,17 +18,6 @@ class LeagueActivity : BaseActivity() {
     }
 
     //region Actions
-    fun leagueNextClick(view: View) {
-        if (!selectedLeague.isEmpty()) {
-            val skillActivity = Intent(this, SkillActivity::class.java)
-            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
-            startActivity(skillActivity)
-        } else {
-            //Toast Android
-            Toast.makeText(this, "Please select a league.", Toast.LENGTH_SHORT).show()
-        }
-    }
-
     fun onMensClicked(view: View) {
         womensLeagueButton.isChecked = false
         coedLeagueButton.isChecked = false
@@ -48,6 +37,16 @@ class LeagueActivity : BaseActivity() {
         womensLeagueButton.isChecked = false
 
         selectedLeague = "co-ed"
+    }
+    fun leagueNextClicked(view: View) {
+        if (!selectedLeague.isEmpty()) {
+            val skillActivity = Intent(this, SkillActivity::class.java)
+            skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
+            startActivity(skillActivity)
+        } else {
+            //Toast Android
+            Toast.makeText(this, "Please select a league.", Toast.LENGTH_SHORT).show()
+        }
     }
     //endregion
 }
